@@ -36,14 +36,15 @@ RUN \
 FROM base AS runner
 WORKDIR /app
 
-ENV NODE_ENV production
+ENV NODE_ENV=production
 # Descomente a linha seguinte caso queira desabilitar a telemetria durante runtime.
-# ENV NEXT_TELEMETRY_DISABLED 1
+# ENV NEXT_TELEMETRY_DISABLED=1
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
-COPY --from=builder /app/public ./public
+# Copiar arquivos públicos diretamente do contexto
+COPY public ./public
 
 # Definir as permissões corretas para prerender cache
 RUN mkdir .next
@@ -58,8 +59,8 @@ USER nextjs
 
 EXPOSE 3000
 
-ENV PORT 3000
-ENV HOSTNAME "0.0.0.0"
+ENV PORT=3000
+ENV HOSTNAME="0.0.0.0"
 
 # server.js é criado pelo next build a partir do output trace
 CMD ["node", "server.js"]
