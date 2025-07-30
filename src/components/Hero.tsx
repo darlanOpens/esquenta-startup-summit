@@ -10,8 +10,9 @@ import Image from "next/image"
  * Implementa o cabeçalho principal com animações e CTA
  */
 export function Hero() {
-  // Variável para controlar o tamanho da imagem de fundo (ajuste conforme necessário)
-  const imageScale = 2.1; // Valores entre 0.5 (menor) e 1.5 (maior)
+  // Variáveis para controlar o tamanho da imagem de fundo por breakpoint
+  const mobileImageScale = 2.1; // Escala para mobile (ajuste conforme necessário)
+  const desktopImageScale = 1.0; // Escala para desktop (mantém tamanho original)
   
   /**
    * Função para scroll suave até o formulário
@@ -27,10 +28,11 @@ export function Hero() {
     <section className="relative min-h-screen flex flex-col items-center justify-start px-4 py-8 md:py-20">
       {/* Background com imagem */}
       <div className="absolute inset-0">
+        {/* Imagem para mobile */}
         <div 
-          className="absolute inset-0 flex justify-end md:justify-center items-end md:items-center"
+          className="absolute inset-0 flex justify-end items-end md:hidden"
           style={{
-            transform: `scale(${imageScale})`,
+            transform: `scale(${mobileImageScale})`,
             transformOrigin: 'right bottom'
           }}
         >
@@ -43,8 +45,27 @@ export function Hero() {
             priority
           />
         </div>
+        
+        {/* Imagem para desktop */}
+        <div 
+          className="hidden md:absolute md:inset-0 md:flex md:justify-center md:items-end"
+          style={{
+            transform: `scale(${desktopImageScale})`,
+            transformOrigin: 'center bottom'
+          }}
+        >
+          <Image
+            src="/bg hero.png"
+            alt="Background Hero"
+            width={1920}
+            height={1080}
+            className="object-contain"
+            priority
+          />
+        </div>
+        
         {/* Overlay branco para filtro */}
-         <div className="absolute inset-0" style={{backgroundColor: 'rgba(25, 9, 114, 0)'}} />
+        <div className="absolute inset-0" style={{backgroundColor: 'rgba(25, 9, 114, 0)'}} />
       </div>
       
       {/* Conteúdo principal */}
