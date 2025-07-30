@@ -1,36 +1,173 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Esquenta Startup Summit - Landing Page
 
-## Getting Started
+Landing page moderna e responsiva para o evento "Esquenta Startup Summit" da Opens, desenvolvida com Next.js 15, TypeScript e Tailwind CSS.
 
-First, run the development server:
+## 🚀 Tecnologias Utilizadas
+
+- **Next.js 15** - Framework React com App Router
+- **TypeScript** - Tipagem estática
+- **Tailwind CSS 4** - Framework CSS utilitário
+- **Framer Motion** - Animações fluidas
+- **React Hook Form** - Gerenciamento de formulários
+- **Zod** - Validação de schemas
+- **Lucide React** - Ícones modernos
+- **shadcn/ui** - Componentes UI reutilizáveis
+- **Radix UI** - Primitivos de UI acessíveis
+- **Class Variance Authority** - Gerenciamento de variantes de CSS
+
+## 🎨 Design System
+
+O projeto implementa um design system completo baseado no arquivo `design.json` fornecido, incluindo:
+
+- **Cores**: Paleta roxa e rosa com gradientes
+- **Tipografia**: Hierarquia clara com Inter como fonte principal
+- **Componentes shadcn/ui implementados**:
+  - `Input` - Campos de entrada estilizados
+  - `Label` - Rótulos acessíveis
+  - `Checkbox` - Caixas de seleção
+  - `Badge` - Tags e indicadores
+  - `Alert` - Mensagens de feedback
+  - `Separator` - Divisores visuais
+- **Tokens**: Definidos em `globals.css` e `tailwind.config.ts`
+- **Animações**: Transições suaves e efeitos hover com Framer Motion e tailwindcss-animate
+- **Responsividade**: Layout adaptável para todos os dispositivos
+
+## 📋 Funcionalidades
+
+### Seções da Landing Page
+
+1. **Hero** - Cabeçalho principal com CTA
+2. **Features** - "Por que você não pode ficar de fora"
+3. **Agenda** - "O que vai rolar" com timeline
+4. **Manifesto** - Filosofia da Opens
+5. **CTA** - Formulário de inscrição
+6. **Footer** - Informações de contato
+
+### Formulário de Captura de Leads
+
+- Validação em tempo real com Zod
+- Campos: Nome, Email, Empresa, LGPD
+- API endpoint `/api/lead` para processamento
+- Feedback visual de sucesso/erro
+
+## 🛠️ Instalação e Uso
+
+### Pré-requisitos
+
+- Node.js 18+ 
+- pnpm (recomendado) ou npm
+
+### Instalação
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+# Clone o repositório
+git clone <url-do-repositorio>
+cd esquenta-startup-summit
+
+# Instale as dependências
+pnpm install
+
+# Execute o servidor de desenvolvimento
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+A aplicação estará disponível em `http://localhost:3001`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Scripts Disponíveis
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+pnpm dev          # Servidor de desenvolvimento
+pnpm build        # Build de produção
+pnpm start        # Servidor de produção
+pnpm lint         # Verificação de código
+```
 
-## Learn More
+## 📁 Estrutura do Projeto
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/
+├── app/
+│   ├── api/lead/          # API de captura de leads
+│   ├── globals.css        # Estilos globais + variáveis CSS
+│   ├── layout.tsx         # Layout principal
+│   └── page.tsx           # Página inicial
+├── components/
+│   ├── ui/                # Componentes shadcn/ui
+│   │   ├── button.tsx     # Botão reutilizável
+│   │   ├── card.tsx       # Cards
+│   │   ├── input.tsx      # Campos de entrada
+│   │   ├── label.tsx      # Rótulos
+│   │   ├── checkbox.tsx   # Caixas de seleção
+│   │   ├── badge.tsx      # Tags e indicadores
+│   │   ├── alert.tsx      # Alertas
+│   │   └── separator.tsx  # Separadores
+│   ├── Hero.tsx           # Seção hero
+│   ├── Features.tsx       # Seção de benefícios
+│   ├── Agenda.tsx         # Seção de programação
+│   ├── Manifesto.tsx      # Seção do manifesto
+│   ├── CTA.tsx            # Formulário de inscrição
+│   └── Footer.tsx         # Rodapé
+├── lib/
+│   ├── tokens.ts          # Tokens do design system
+│   └── utils.ts           # Utilitários + cn helper
+└── tailwind.config.ts     # Configuração do Tailwind
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🎯 SEO e Performance
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Metadados otimizados** para redes sociais
+- **Open Graph** e Twitter Cards configurados
+- **Fonte Inter** otimizada com `font-display: swap`
+- **Scroll suave** entre seções
+- **Acessibilidade** com ARIA labels
 
-## Deploy on Vercel
+## 🔧 Customização
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Design Tokens
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Os tokens de design estão centralizados em:
+- `src/lib/tokens.ts` - Definições TypeScript
+- `src/app/globals.css` - Variáveis CSS
+
+### Componentes
+
+Todos os componentes seguem o padrão shadcn/ui e podem ser facilmente customizados através das classes Tailwind.
+
+### API de Leads
+
+O endpoint `/api/lead` pode ser integrado com:
+- Serviços de email (SendGrid, Resend)
+- CRM (HubSpot, Pipedrive)
+- Banco de dados
+- Webhooks (Zapier, Make)
+
+## 📱 Responsividade
+
+A landing page é totalmente responsiva com breakpoints:
+- **Mobile**: < 640px
+- **Tablet**: 640px - 1024px
+- **Desktop**: > 1024px
+
+## 🚀 Deploy
+
+O projeto está pronto para deploy em:
+- **Vercel** (recomendado)
+- **Netlify**
+- **AWS Amplify**
+- Qualquer provedor que suporte Next.js
+
+```bash
+# Build de produção
+pnpm build
+
+# Teste local do build
+pnpm start
+```
+
+## 📄 Licença
+
+Este projeto foi desenvolvido para a Opens como parte do evento Esquenta Startup Summit.
+
+---
+
+**Desenvolvido com ❤️ para conectar pessoas e transformar o futuro dos negócios.**
