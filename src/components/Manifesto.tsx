@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Card } from "@/components/ui/card"
 import { Quote, Sparkles } from "lucide-react"
+import Image from "next/image"
 
 /**
  * GlassFilter - SVG filter for glassmorphism effect
@@ -94,7 +95,7 @@ export function Manifesto() {
           )}
         </AnimatePresence>
 
-        {/* Card do manifesto com efeito glassmorphism */}
+        {/* Card único do manifesto */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isLoaded ? { opacity: 1, y: 0 } : {}}
@@ -103,7 +104,6 @@ export function Manifesto() {
             delay: 0.5,
             ease: [0.22, 1, 0.36, 1]
           }}
-          className="perspective-1000"
         >
           <Card className="relative overflow-hidden backdrop-blur-md bg-black/30 border border-white/10 shadow-2xl">
             {/* Efeito de brilho animado */}
@@ -125,49 +125,77 @@ export function Manifesto() {
               }}
             />
             
-            {/* Ícone de aspas estilizado */}
-            <div className="absolute top-8 left-8 w-16 h-16 bg-gradient-to-br from-orange-500/30 to-purple-500/30 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/10">
-              <Quote className="h-8 w-8 text-orange-400" />
-            </div>
-            
-            <div className="pt-24 pb-16 px-8 md:px-16">
-              <div className="space-y-8 text-xl md:text-2xl leading-relaxed">
-                <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isLoaded ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.6, delay: 0.7 }}
-                  className="text-white/90"
-                >
-                  Na Opens, acreditamos que{" "}
-                  <span className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-purple-400">
-                    atender é conectar
-                  </span>.
-                  Cada conversa é a chance de transformar um problema em confiança, 
-                  um dado em história, um cliente em comunidade.
-                </motion.p>
-                
-                <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isLoaded ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.6, delay: 0.9 }}
-                  className="text-white/90"
-                >
-                  Nossa tecnologia é poderosa, mas o que nos move são as pessoas — 
-                  e é isso que queremos compartilhar com você no Esquenta.
-                </motion.p>
-              </div>
-              
-              {/* Assinatura com efeito de revelação */}
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={isLoaded ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 1.1 }}
-                className="mt-12 pt-8 border-t border-white/10"
+            {/* Grid interno com 3 colunas: imagem (1/3) + texto (2/3) */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 p-8">
+              {/* Imagem - 1/3 do espaço */}
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                animate={isLoaded ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.8, delay: 0.6 }}
+                className="relative lg:col-span-1"
               >
-                <p className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-purple-400 font-bold text-xl md:text-2xl">
-                  Opens — Mais do que atendimento, conexão.
-                </p>
+                <Image
+                  src="/manifesto.png"
+                  alt="Manifesto Opens"
+                  width={250}
+                  height={350}
+                  className="w-full h-auto object-contain opacity-80 rounded-lg"
+                  priority
+                />
               </motion.div>
+
+              {/* Conteúdo do texto - 2/3 do espaço */}
+              <div className="relative z-10 lg:col-span-2">
+                {/* Ícone de aspas estilizado */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={isLoaded ? { opacity: 1, scale: 1 } : {}}
+                  transition={{ duration: 0.6, delay: 0.8 }}
+                  className="mb-6"
+                >
+                  <div className="w-16 h-16 bg-gradient-to-br from-orange-500/30 to-purple-500/30 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/10">
+                    <Quote className="h-8 w-8 text-orange-400" />
+                  </div>
+                </motion.div>
+                
+                <div className="space-y-8 text-lg md:text-1xl leading-relaxed">
+                  <motion.p
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={isLoaded ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.6, delay: 0.7 }}
+                    className="text-white/90"
+                  >
+                    Acreditamos que{" "}
+                    <span className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-300">
+                      atender é conectar
+                    </span>.
+                    Cada conversa é a chance de transformar um problema em confiança, 
+                    um dado em história, um cliente em comunidade.
+                  </motion.p>
+                  
+                  <motion.p
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={isLoaded ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.6, delay: 0.9 }}
+                    className="text-white/90"
+                  >
+                    Nossa tecnologia é poderosa, mas o que nos move são as pessoas — 
+                    e é isso que queremos compartilhar com você.
+                  </motion.p>
+                </div>
+                
+                {/* Assinatura com efeito de revelação */}
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isLoaded ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6, delay: 1.1 }}
+                  className="mt-12 pt-8 border-t border-white/10"
+                >
+                  <p className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-purple-400 font-bold text-xl md:text-2xl">
+                    Opens — Mais do que atendimento, conexão.
+                  </p>
+                </motion.div>
+              </div>
             </div>
           </Card>
         </motion.div>

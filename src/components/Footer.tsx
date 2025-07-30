@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import { Separator } from "./ui/separator"
-import { Heart } from "lucide-react"
+import Image from "next/image"
 
 /**
  * Componente Footer - rodapé da landing page
@@ -21,14 +21,16 @@ export function Footer() {
         >
           {/* Logo/Brand */}
           <div className="mb-6">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-400 rounded-full mb-4">
-              <span className="text-2xl font-bold text-white">O</span>
+            <div className="inline-flex items-center justify-center w-16 h-16 mb-4">
+              <Image
+                src="/Logo Opens.png"
+                alt="Logo Opens"
+                width={64}
+                height={64}
+                className="object-contain"
+              />
             </div>
-            
-            <h3 className="text-2xl font-bold text-white mb-2">
-              Opens
-            </h3>
-            
+           
             <p className="text-orange-500 font-semibold text-lg">
               Mais do que atendimento, conexão.
             </p>
@@ -41,21 +43,15 @@ export function Footer() {
           <div className="mb-8">
             <p className="text-white-80 text-lg">
               Oferecido por{" "}
-              <span className="text-white font-semibold">Opens</span>
+              <span className="text-white font-semibold">Opens tecnologia</span>
             </p>
           </div>
 
           {/* Copyright e créditos */}
           <div className="flex flex-col md:flex-row items-center justify-center gap-4 text-white-80 text-sm">
             <p>
-              © 2024 Opens. Todos os direitos reservados.
+              © 2025 Opens Tecnologia. Todos os direitos reservados.
             </p>
-            
-            <div className="flex items-center gap-1">
-              <span>Feito com</span>
-              <Heart className="h-4 w-4 text-orange-500 fill-current" />
-              <span>para reconectar pessoas</span>
-            </div>
           </div>
         </motion.div>
       </div>

@@ -23,14 +23,14 @@ const features = [
   },
   {
     icon: Heart,
-    title: "Conteúdo que toca",
-    description: "Histórias, vídeos e dinâmicas lúdicas para transformar insight em ação já no brunch.",
+    title: "Conteúdo Inspirador",
+    description: "Histórias que inspiram e transformam de maneira profunda.",
     gradient: "from-orange-500/80 to-purple-600/80"
   },
   {
     icon: Coffee,
     title: "Brunch premium",
-    description: "Gastronomia local, clima descontraído e aquele café para aquecer novas ideias.",
+    description: "Gastronomia local, clima descontraído e aquele drink para aquecer novas ideias.",
     gradient: "from-purple-600/80 to-orange-500/80"
   }
 ]
