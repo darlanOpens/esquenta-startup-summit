@@ -73,7 +73,7 @@ jspm_packages/
 
 # Arquivos gerados pelo Gatsby
 .cache/
-public
+# public - removido para permitir cópia no Docker
 
 # Diretório de dependências do Storybook
 .storybook-out
