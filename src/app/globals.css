@@ -123,3 +123,8 @@ body {
   @apply text-white bg-blue-500 rounded-lg p-2;
   @apply hover:bg-orange-500 transition-colors duration-150;
 }
+
+/* Gradiente radial personalizado para efeito de brilho */
+.bg-gradient-radial {
+  background: radial-gradient(circle at center, var(--tw-gradient-stops));
+}
