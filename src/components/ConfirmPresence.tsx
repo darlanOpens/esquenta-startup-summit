@@ -78,7 +78,7 @@ export function ConfirmPresence() {
           className="mb-8"
         >
           <Image
-            src="/logo-esquenta.png"
+            src="/esquenta/logo-esquenta.png"
             alt="Logo Esquenta Startup Summit"
             width={200}
             height={160}

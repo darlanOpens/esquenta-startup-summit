@@ -23,7 +23,7 @@ export function Footer() {
           <div className="mb-6">
             <div className="inline-flex items-center justify-center w-16 h-16 mb-4">
               <Image
-                src="/Logo Opens.png"
+                src="/esquenta/Logo Opens.png"
                 alt="Logo Opens"
                 width={64}
                 height={64}

@@ -37,7 +37,7 @@ export function Hero() {
           }}
         >
           <Image
-            src="/bg hero.png"
+            src="/esquenta/bg hero.png"
             alt="Background Hero"
             width={1920}
             height={1080}
@@ -55,7 +55,7 @@ export function Hero() {
           }}
         >
           <Image
-            src="/bg hero.png"
+            src="/esquenta/bg hero.png"
             alt="Background Hero"
             width={1920}
             height={1080}
@@ -81,7 +81,7 @@ export function Hero() {
               className="mb-4"
             >
               <Image
-                src="/logo-esquenta.png"
+                src="/esquenta/logo-esquenta.png"
                 alt="Logo Esquenta Startup Summit"
                 width={200}
                 height={160}

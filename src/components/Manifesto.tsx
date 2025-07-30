@@ -135,7 +135,7 @@ export function Manifesto() {
                 className="relative lg:col-span-1"
               >
                 <Image
-                  src="/manifesto.png"
+                  src="/esquenta/manifesto.png"
                   alt="Manifesto Opens"
                   width={250}
                   height={350}

@@ -17,7 +17,7 @@ export function People() {
             className="relative"
           >
             <Image
-              src="/Pessoas.png"
+              src="/esquenta/people.png"
               alt="Pessoas que fazem acontecer"
               width={600}
               height={600}
