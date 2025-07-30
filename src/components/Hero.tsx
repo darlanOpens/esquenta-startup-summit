@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import { ArrowDown } from "lucide-react"
+import { ArrowDown, Calendar, Clock, MapPin } from "lucide-react"
 import Image from "next/image"
 
 /**
@@ -132,10 +132,30 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="text-lg md:text-xl text-white-80 mb-4"
+              className="text-md md:text-md text-white-80 mb-4"
             >
-              <p className="font-semibold text-blue-200">28 de agosto · 09h – 12h · Florianópolis</p>
-              <p className="mt-2">
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 text-blue-200 font-semibold">
+                <div className="flex items-center gap-1.5">
+                  <Calendar className="h-4 w-4 text-orange-400" />
+                  <span>28 de agosto</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <Clock className="h-4 w-4 text-orange-400" />
+                  <span>09h – 12h</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <MapPin className="h-4 w-4 text-orange-400" />
+                  <a 
+                    href="https://blackpotrestaurant.com.br/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="hover:text-orange-300 transition-colors duration-200 underline decoration-orange-400/50 hover:decoration-orange-300"
+                  >
+                    Blackpot Restaurant Floripa
+                  </a>
+                </div>
+              </div>
+              <p className="mt-2 text-lg md:text-md">
                 Encontro exclusivo para empresários e influenciadores que acreditam em uma comunicação centrada nas pessoas.
               </p>
             </motion.div>
@@ -150,7 +170,7 @@ export function Hero() {
               <form className="flex flex-col sm:flex-row bg-white/10 backdrop-blur-md border border-white/30 rounded-lg overflow-hidden">
                  <input
                    type="email"
-                   placeholder="Seu melhor e-mail"
+                   placeholder="Seu email de confirmação"
                    className="flex-1 px-4 py-3 bg-transparent text-white placeholder-white/70 focus:outline-none border-none text-center lg:text-left"
                    required
                  />
