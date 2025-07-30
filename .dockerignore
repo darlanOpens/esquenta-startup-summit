@@ -1,0 +1,110 @@
+# Dependências
+node_modules
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build local
+.next/
+out/
+build
+dist
+
+# Arquivos de ambiente
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+logs
+*.log
+
+# Cache do runtime
+.cache
+
+# Diretórios de coverage
+coverage
+*.lcov
+
+# Instrumentação nyc test coverage
+.nyc_output
+
+# Dependency directories
+jspm_packages/
+
+# Arquivos opcionais de cache do npm
+.npm
+
+# Arquivos opcionais de cache do ESLint
+.eslintcache
+
+# Arquivos opcionais de cache do Stylelint
+.stylelintcache
+
+# Microbundle cache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# Histórico do REPL
+.node_repl_history
+
+# Saída do 'npm pack'
+*.tgz
+
+# Arquivo de integridade do Yarn
+.yarn-integrity
+
+# Arquivo de ambiente do dotenv
+.env.test
+
+# Cache do parcel-bundler
+.parcel-cache
+
+# Cache do Next.js
+.next
+
+# Saída de build do Nuxt.js
+.nuxt
+
+# Arquivos gerados pelo Gatsby
+.cache/
+public
+
+# Diretório de dependências do Storybook
+.storybook-out
+
+# Arquivos temporários do FuseBox
+.fusebox/
+
+# Arquivos locais do DynamoDB
+.dynamodb/
+
+# Arquivo de porta do TernJS
+.tern-port
+
+# Stores do VS Code
+.vscode
+
+# Arquivos do macOS
+.DS_Store
+
+# Arquivos do Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Git
+.git
+.gitignore
+
+# Docker
+Dockerfile
+.dockerignore
+
+# README
+README.md
