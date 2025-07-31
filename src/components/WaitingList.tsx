@@ -35,7 +35,7 @@ export function WaitingList() {
       // Adiciona dados UTM ao formulário
       const dataWithUTM = addUTMToFormData(formData)
       
-      const response = await fetch('/api/waiting-list', {
+      const response = await fetch('/esquenta/api/waiting-list', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

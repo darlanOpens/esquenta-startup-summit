@@ -154,7 +154,7 @@ export function CTA() {
       // Adiciona dados UTM ao formulário
       const dataWithUTM = addUTMToFormData(data)
       
-      const response = await fetch('/api/lead', {
+      const response = await fetch('/esquenta/api/lead', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
