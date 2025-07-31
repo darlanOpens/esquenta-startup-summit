@@ -11,7 +11,7 @@ import Image from "next/image"
  */
 export function Hero() {
   // Variáveis para controlar o tamanho da imagem de fundo por breakpoint
-  const mobileImageScale = 2.1; // Escala para mobile (ajuste conforme necessário)
+  const mobileImageScale = 1.0; // Escala para mobile (ajuste conforme necessário)
   const desktopImageScale = 0.55; // Escala para desktop (mantém tamanho original)
   
   /**
@@ -25,7 +25,7 @@ export function Hero() {
   }
 
   return (
-    <section className="relative h-[95vh] flex flex-col items-center justify-start px-4 py-8 md:py-20">
+    <section className="relative min-h-screen flex flex-col items-center justify-start px-4 py-6 md:py-20">
       {/* Background com imagem */}
       <div className="absolute inset-0 -z-10">
         {/* Pattern/Textura de fundo */}
@@ -146,7 +146,7 @@ export function Hero() {
                initial={{ opacity: 0, y: 20 }}
                animate={{ opacity: 1, y: 0 }}
                transition={{ duration: 0.8, delay: 0.4 }}
-               className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight"
+               className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 leading-tight"
              >
                <span className="text-white">
                  🍽️ BRUNCH VIP |{" "}
@@ -159,9 +159,9 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="text-md md:text-md text-white-80 mb-4"
+              className="text-sm md:text-base text-white/80 mb-4"
             >
-              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 text-blue-200 font-semibold">
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2 sm:gap-4 text-blue-200 font-semibold text-sm">
                 <div className="flex items-center gap-1.5">
                   <Calendar className="h-4 w-4 text-orange-400" />
                   <span>28 de agosto</span>
@@ -182,7 +182,7 @@ export function Hero() {
                   </a>
                 </div>
               </div>
-              <p className="mt-2 text-lg md:text-md">
+              <p className="mt-3 text-sm sm:text-base md:text-lg leading-relaxed">
                 Um encontro exclusivo nas vésperas do Startup Summit 2025 para quem acredita que o futuro dos negócios passa pela experiência do cliente.
               </p>
             </motion.div>
@@ -192,7 +192,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.8 }}
-              className="mt-8 md:mt-12 w-full max-w-md mx-auto lg:mx-0"
+              className="mt-6 md:mt-8 w-full max-w-md mx-auto lg:mx-0"
             >
               <form className="flex flex-col sm:flex-row bg-white/10 backdrop-blur-md border border-white/30 rounded-lg overflow-hidden">
                  <input
