@@ -26,7 +26,7 @@ export function Exclusivity() {
     },
     {
       icon: Shield,
-      title: "Conteúdo Confidencial",
+      title: "Conteúdo Exclusivo",
       description: "Insights e estratégias compartilhadas apenas entre nós"
     }
   ]

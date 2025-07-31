@@ -12,7 +12,7 @@ import Image from "next/image"
 export function Hero() {
   // Variáveis para controlar o tamanho da imagem de fundo por breakpoint
   const mobileImageScale = 2.1; // Escala para mobile (ajuste conforme necessário)
-  const desktopImageScale = 0.9; // Escala para desktop (mantém tamanho original)
+  const desktopImageScale = 0.55; // Escala para desktop (mantém tamanho original)
   
   /**
    * Função para scroll suave até o formulário
@@ -28,9 +28,21 @@ export function Hero() {
     <section className="relative h-[95vh] flex flex-col items-center justify-start px-4 py-8 md:py-20">
       {/* Background com imagem */}
       <div className="absolute inset-0 -z-10">
+        {/* Pattern/Textura de fundo */}
+        <div className="absolute inset-0 opacity-50">
+          <Image
+            src="/esquenta/bg.png"
+            alt="Pattern Background"
+            fill
+            className="object-cover"
+            priority={false}
+            quality={100}
+          />
+        </div>
+        
         {/* Imagem para mobile */}
         <div 
-          className="absolute inset-0 flex justify-end items-end md:hidden"
+          className="absolute inset-0 flex justify-end items-end md:hidden z-10"
           style={{
             transform: `scale(${mobileImageScale})`,
             transformOrigin: 'right bottom'
@@ -50,7 +62,7 @@ export function Hero() {
         
         {/* Imagem para desktop */}
         <div 
-          className="hidden md:absolute md:inset-0 md:flex md:justify-center md:items-end"
+          className="hidden md:absolute md:inset-0 md:flex md:justify-center md:items-end z-10"
           style={{
             transform: `scale(${desktopImageScale})`,
             transformOrigin: 'right bottom'
@@ -69,7 +81,7 @@ export function Hero() {
         </div>
         
         {/* Overlay branco para filtro */}
-        <div className="absolute inset-0" style={{backgroundColor: 'rgba(25, 9, 114, 0)'}} />
+        <div className="absolute inset-0 z-20" style={{backgroundColor: 'rgba(25, 9, 114, 0)'}} />
       </div>
       
       {/* Conteúdo principal */}
@@ -94,21 +106,32 @@ export function Hero() {
               />
             </motion.div>
 
-            {/* Cápsula superior */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="mb-6"
-            >
-              <div className="inline-flex items-center gap-1.5 px-4 py-2 bg-white/20 backdrop-blur-md rounded-full border border-white/30 shadow-lg shadow-black/20">
-                 <span className="text-orange-500 font-semibold text-xs">Brunch</span>
-                 <span className="text-white/60">•</span>
-                 <span className="text-orange-500 font-semibold text-xs">Insights</span>
-                 <span className="text-white/60">•</span>
-                 <span className="text-orange-500 font-semibold text-xs">Networking</span>
-               </div>
-            </motion.div>
+            {/* Cápsulas superiores */}
+            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 mb-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+              >
+                <div className="inline-flex items-center gap-1.5 px-4 py-2 bg-white/20 backdrop-blur-md rounded-full border border-white/30 shadow-lg shadow-black/20">
+                   <span className="text-orange-500 font-semibold text-xs">Brunch</span>
+                   <span className="text-white/60">•</span>
+                   <span className="text-orange-500 font-semibold text-xs">Insights</span>
+                   <span className="text-white/60">•</span>
+                   <span className="text-orange-500 font-semibold text-xs">Networking</span>
+                 </div>
+              </motion.div>
+              
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+              >
+                <div className="inline-flex items-center gap-1.5 px-4 py-3 bg-gradient-to-r from-green-500/20 to-emerald-500/20 backdrop-blur-md rounded-full border border-green-400/40 shadow-lg shadow-green-500/20">
+                   <span className="text-green-300 font-semibold text-xs">Evento gratuito para convidados</span>
+                 </div>
+              </motion.div>
+            </div>
 
             {/* Conteúdo principal */}
             <motion.div
