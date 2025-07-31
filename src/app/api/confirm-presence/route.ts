@@ -2,13 +2,20 @@ import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 
 /**
- * Schema de validação para os dados do lead
+ * Schema de validação para confirmação de presença
  */
-const leadSchema = z.object({
-  nome: z.string().min(2, 'Nome deve ter pelo menos 2 caracteres'),
-  email: z.string().email('Email inválido'),
-  empresa: z.string().min(2, 'Nome da empresa deve ter pelo menos 2 caracteres'),
-  lgpd: z.boolean().refine(val => val === true, 'Você deve aceitar os termos'),
+const confirmPresenceSchema = z.object({
+  nomeCompleto: z.string().min(2, 'Nome deve ter pelo menos 2 caracteres'),
+  linkedin: z.string().url('URL do LinkedIn inválida').optional().or(z.literal('')),
+  tamanhoEmpresa: z.string().min(1, 'Tamanho da empresa é obrigatório'),
+  setorAtuacao: z.string().min(1, 'Setor de atuação é obrigatório'),
+  principaisProdutos: z.string().min(2, 'Principais produtos/serviços é obrigatório'),
+  areaExperiencia: z.enum(['Sim', 'Não']),
+  quantasPessoas: z.string().min(1, 'Quantidade de pessoas é obrigatória'),
+  canaisAtendimento: z.array(z.string()),
+  desafios: z.string().min(2, 'Principais desafios é obrigatório'),
+  faturamento: z.string().min(1, 'Faturamento é obrigatório'),
+  modeloNegocio: z.string().min(1, 'Modelo de negócio é obrigatório'),
   // Campos UTM
   utm_source: z.string().optional(),
   utm_medium: z.string().optional(),
@@ -32,7 +39,7 @@ async function sendWebhook(data: any, webhookUrl: string) {
       body: JSON.stringify({
         ...data,
         timestamp: new Date().toISOString(),
-        form_type: 'lead'
+        form_type: 'confirm_presence'
       })
     })
     
@@ -45,18 +52,17 @@ async function sendWebhook(data: any, webhookUrl: string) {
 }
 
 /**
- * Endpoint POST para captura de leads
- * Recebe os dados do formulário e processa a inscrição
+ * Endpoint POST para confirmação de presença
  */
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
     
     // Validação dos dados usando Zod
-    const validatedData = leadSchema.parse(body)
+    const validatedData = confirmPresenceSchema.parse(body)
     
-    // Log dos dados recebidos (em produção, enviar para serviço de email/CRM)
-    console.log('Novo lead capturado:', {
+    // Log dos dados recebidos
+    console.log('Confirmação de presença recebida:', {
       ...validatedData,
       timestamp: new Date().toISOString(),
       userAgent: request.headers.get('user-agent'),
@@ -64,8 +70,8 @@ export async function POST(request: NextRequest) {
     })
     
     // Enviar webhook se configurado
-    const webhookUrl = process.env.WEBHOOK_LEAD_URL
-    if (webhookUrl && webhookUrl !== 'https://webhook.site/your-lead-webhook-url') {
+    const webhookUrl = process.env.WEBHOOK_CONFIRM_PRESENCE_URL
+    if (webhookUrl && webhookUrl !== 'https://webhook.site/your-confirm-presence-webhook-url') {
       await sendWebhook({
         ...validatedData,
         userAgent: request.headers.get('user-agent'),
@@ -73,20 +79,17 @@ export async function POST(request: NextRequest) {
       }, webhookUrl)
     }
     
-    // Simulação de processamento
-    await new Promise(resolve => setTimeout(resolve, 1000))
-    
     // Resposta de sucesso
     return NextResponse.json(
       { 
         success: true, 
-        message: 'Inscrição realizada com sucesso!' 
+        message: 'Presença confirmada com sucesso!' 
       },
       { status: 200 }
     )
     
   } catch (error) {
-    console.error('Erro ao processar lead:', error)
+    console.error('Erro ao processar confirmação de presença:', error)
     
     // Erro de validação
     if (error instanceof z.ZodError) {
@@ -117,7 +120,7 @@ export async function POST(request: NextRequest) {
 export async function GET() {
   return NextResponse.json(
     { 
-      message: 'API de captura de leads funcionando',
+      message: 'API de confirmação de presença funcionando',
       timestamp: new Date().toISOString()
     },
     { status: 200 }

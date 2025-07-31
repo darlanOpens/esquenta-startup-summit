@@ -43,11 +43,34 @@ O projeto implementa um design system completo baseado no arquivo `design.json` 
 5. **CTA** - Formulário de inscrição
 6. **Footer** - Informações de contato
 
-### Formulário de Captura de Leads
+### Formulários e Webhooks
 
+#### Formulário de Captura de Leads (Página Principal)
 - Validação em tempo real com Zod
 - Campos: Nome, Email, Empresa, LGPD
 - API endpoint `/api/lead` para processamento
+- Webhook configurável via `WEBHOOK_LEAD_URL`
+- Captura automática de dados UTM e URL de referência
+
+#### Formulário de Confirmação de Presença
+- Formulário completo para confirmação de presença
+- Campos: Nome, LinkedIn, empresa, setor, produtos, etc.
+- API endpoint `/api/confirm-presence` para processamento
+- Webhook configurável via `WEBHOOK_CONFIRM_PRESENCE_URL`
+- Captura automática de dados UTM e URL de referência
+
+#### Formulário de Lista de Espera
+- Formulário para inscrição na lista de espera
+- Campos: Nome, Email, Telefone, Empresa, Cargo
+- API endpoint `/api/waiting-list` para processamento
+- Webhook configurável via `WEBHOOK_WAITING_LIST_URL`
+- Captura automática de dados UTM e URL de referência
+
+#### Recursos dos Webhooks
+- Envio automático de dados para URLs configuradas
+- Campos UTM capturados automaticamente (utm_source, utm_medium, utm_campaign, utm_term, utm_content)
+- URL de referência capturada automaticamente
+- Metadados incluídos: timestamp, user agent, IP, tipo de formulário
 - Feedback visual de sucesso/erro
 
 ## 🛠️ Instalação e Uso
@@ -67,11 +90,28 @@ cd esquenta-startup-summit
 # Instale as dependências
 pnpm install
 
+# Configure as variáveis de ambiente
+cp .env.example .env
+# Edite o arquivo .env com suas URLs de webhook reais
+
 # Execute o servidor de desenvolvimento
 pnpm dev
 ```
 
-A aplicação estará disponível em `http://localhost:3001`
+A aplicação estará disponível em `http://localhost:3000`
+
+### Configuração de Webhooks
+
+Para configurar os webhooks, edite o arquivo `.env` com suas URLs reais:
+
+```bash
+# Webhooks URLs - Configure com suas URLs reais de webhook
+WEBHOOK_LEAD_URL=https://seu-webhook.com/lead
+WEBHOOK_CONFIRM_PRESENCE_URL=https://seu-webhook.com/confirm-presence
+WEBHOOK_WAITING_LIST_URL=https://seu-webhook.com/waiting-list
+```
+
+**Importante:** Se as URLs não forem configuradas ou estiverem com os valores padrão do exemplo, os webhooks não serão enviados, mas os formulários continuarão funcionando normalmente.
 
 ### Scripts Disponíveis
 
