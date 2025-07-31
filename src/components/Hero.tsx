@@ -4,12 +4,19 @@ import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { ArrowDown, Calendar, Clock, MapPin } from "lucide-react"
 import Image from "next/image"
+import { useState } from "react"
+import { addUTMToFormData } from "@/lib/utm"
 
 /**
  * Componente Hero da landing page
  * Implementa o cabeçalho principal com animações e CTA
  */
 export function Hero() {
+  // Estados para o formulário
+  const [email, setEmail] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isSubmitted, setIsSubmitted] = useState(false)
+  
   // Variáveis para controlar o tamanho da imagem de fundo por breakpoint
   const mobileImageScale = 1.0; // Escala para mobile (ajuste conforme necessário)
   const desktopImageScale = 0.55; // Escala para desktop (mantém tamanho original)
@@ -21,6 +28,48 @@ export function Hero() {
     const formElement = document.getElementById('inscricao-form')
     if (formElement) {
       formElement.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
+  /**
+   * Função para lidar com o submit do formulário de convite
+   */
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    
+    try {
+      // Dados básicos do formulário
+      const formData = {
+        email: email,
+        // Campos obrigatórios da API lead (usando valores padrão para convite)
+        nome: 'Convite Pessoal',
+        empresa: 'A definir',
+        lgpd: true
+      }
+      
+      // Adiciona dados UTM ao formulário
+      const dataWithUTM = addUTMToFormData(formData)
+      
+      const response = await fetch('/api/lead', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(dataWithUTM),
+      })
+      
+      if (response.ok) {
+        setIsSubmitted(true)
+        setEmail('')
+      } else {
+        throw new Error('Erro ao confirmar convite')
+      }
+    } catch (error) {
+      console.error('Erro:', error)
+      alert('Erro ao confirmar convite. Tente novamente.')
+    } finally {
+      setIsSubmitting(false)
     }
   }
 
@@ -194,21 +243,31 @@ export function Hero() {
               transition={{ duration: 0.8, delay: 0.8 }}
               className="mt-6 md:mt-8 w-full max-w-md mx-auto lg:mx-0"
             >
-              <form className="flex flex-col sm:flex-row bg-white/10 backdrop-blur-md border border-white/30 rounded-lg overflow-hidden">
-                 <input
-                   type="email"
-                   placeholder="Email do convite pessoal"
-                   className="flex-1 px-4 py-3 bg-transparent text-white placeholder-white/70 focus:outline-none border-none text-center lg:text-left"
-                   required
-                 />
-                 <Button
-                   type="submit"
-                   size="lg"
-                   className="text-sm md:text-base px-4 md:px-6 py-3 h-auto whitespace-nowrap rounded-none bg-orange-500 hover:bg-orange-600 mt-2 sm:mt-0"
-                 >
-                   Confirmar Convite
-                 </Button>
-               </form>
+              {!isSubmitted ? (
+                <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row bg-white/10 backdrop-blur-md border border-white/30 rounded-lg overflow-hidden">
+                  <input
+                    type="email"
+                    placeholder="Email do convite pessoal"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="flex-1 px-4 py-3 bg-transparent text-white placeholder-white/70 focus:outline-none border-none text-center lg:text-left"
+                    required
+                  />
+                  <Button
+                    type="submit"
+                    disabled={isSubmitting}
+                    size="lg"
+                    className="text-sm md:text-base px-4 md:px-6 py-3 h-auto whitespace-nowrap rounded-none bg-orange-500 hover:bg-orange-600 mt-2 sm:mt-0 disabled:opacity-50"
+                  >
+                    {isSubmitting ? 'Enviando...' : 'Confirmar Convite'}
+                  </Button>
+                </form>
+              ) : (
+                <div className="bg-green-500/20 backdrop-blur-md border border-green-400/30 rounded-lg p-4 text-center">
+                  <p className="text-green-300 font-semibold">✅ Convite confirmado com sucesso!</p>
+                  <p className="text-green-200 text-sm mt-1">Você receberá mais informações em breve.</p>
+                </div>
+              )}
             </motion.div>
             </motion.div>
           </div>
