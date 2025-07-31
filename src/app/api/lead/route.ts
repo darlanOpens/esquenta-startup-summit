@@ -37,9 +37,14 @@ async function sendWebhook(data: Record<string, unknown>, webhookUrl: string) {
     
     if (!response.ok) {
       console.error('Erro ao enviar webhook:', response.statusText)
+      return null
     }
+    
+    const webhookResponse = await response.json()
+    return webhookResponse
   } catch (error) {
     console.error('Erro ao enviar webhook:', error)
+    return null
   }
 }
 
@@ -64,8 +69,10 @@ export async function POST(request: NextRequest) {
     
     // Enviar webhook se configurado
     const webhookUrl = process.env.WEBHOOK_LEAD_URL
+    let webhookResponse = null
+    
     if (webhookUrl && webhookUrl !== 'https://webhook.site/your-lead-webhook-url') {
-      await sendWebhook({
+      webhookResponse = await sendWebhook({
         ...validatedData,
         userAgent: request.headers.get('user-agent'),
         ip: request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip')
@@ -75,14 +82,22 @@ export async function POST(request: NextRequest) {
     // Simulação de processamento
     await new Promise(resolve => setTimeout(resolve, 1000))
     
-    // Resposta de sucesso
-    return NextResponse.json(
-      { 
-        success: true, 
-        message: 'Inscrição realizada com sucesso!' 
-      },
-      { status: 200 }
-    )
+    // Resposta de sucesso com redirectUrl do webhook se disponível
+    const responseData: {
+      success: boolean;
+      message: string;
+      redirectUrl?: string;
+    } = {
+      success: true,
+      message: 'Inscrição realizada com sucesso!'
+    }
+    
+    // Adiciona redirectUrl se retornado pelo webhook
+    if (webhookResponse && webhookResponse.redirectUrl) {
+      responseData.redirectUrl = webhookResponse.redirectUrl
+    }
+    
+    return NextResponse.json(responseData, { status: 200 })
     
   } catch (error) {
     console.error('Erro ao processar lead:', error)
