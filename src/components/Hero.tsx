@@ -43,6 +43,8 @@ export function Hero() {
             height={1080}
             className="object-contain"
             priority
+            quality={100}
+            unoptimized={true}
           />
         </div>
         
@@ -61,6 +63,8 @@ export function Hero() {
             height={1080}
             className="object-contain"
             priority
+            quality={100}
+            unoptimized={true}
           />
         </div>
         
