@@ -12,7 +12,7 @@ import Image from "next/image"
 export function Hero() {
   // Variáveis para controlar o tamanho da imagem de fundo por breakpoint
   const mobileImageScale = 2.1; // Escala para mobile (ajuste conforme necessário)
-  const desktopImageScale = 1.0; // Escala para desktop (mantém tamanho original)
+  const desktopImageScale = 0.9; // Escala para desktop (mantém tamanho original)
   
   /**
    * Função para scroll suave até o formulário
@@ -25,9 +25,9 @@ export function Hero() {
   }
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-start px-4 py-8 md:py-20">
+    <section className="relative h-[95vh] flex flex-col items-center justify-start px-4 py-8 md:py-20">
       {/* Background com imagem */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 -z-10">
         {/* Imagem para mobile */}
         <div 
           className="absolute inset-0 flex justify-end items-end md:hidden"
@@ -53,7 +53,7 @@ export function Hero() {
           className="hidden md:absolute md:inset-0 md:flex md:justify-center md:items-end"
           style={{
             transform: `scale(${desktopImageScale})`,
-            transformOrigin: 'center bottom'
+            transformOrigin: 'right bottom'
           }}
         >
           <Image
@@ -126,8 +126,8 @@ export function Hero() {
                className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight"
              >
                <span className="text-white">
-                 Reconecte seu{" "}
-                 <span className="text-orange-500">propósito de comunicação</span>
+                 🍽️ BRUNCH VIP |{" "}
+                 <span className="text-orange-500">O Futuro Agora da Experiência do Cliente</span>
                </span>
              </motion.h1>
 
@@ -160,7 +160,7 @@ export function Hero() {
                 </div>
               </div>
               <p className="mt-2 text-lg md:text-md">
-                Encontro exclusivo para empresários e influenciadores que acreditam em uma comunicação centrada nas pessoas.
+                Um encontro exclusivo nas vésperas do Startup Summit 2025 para quem acredita que o futuro dos negócios passa pela experiência do cliente.
               </p>
             </motion.div>
 
@@ -174,7 +174,7 @@ export function Hero() {
               <form className="flex flex-col sm:flex-row bg-white/10 backdrop-blur-md border border-white/30 rounded-lg overflow-hidden">
                  <input
                    type="email"
-                   placeholder="Seu email de confirmação"
+                   placeholder="Email do convite pessoal"
                    className="flex-1 px-4 py-3 bg-transparent text-white placeholder-white/70 focus:outline-none border-none text-center lg:text-left"
                    required
                  />
@@ -183,7 +183,7 @@ export function Hero() {
                    size="lg"
                    className="text-sm md:text-base px-4 md:px-6 py-3 h-auto whitespace-nowrap rounded-none bg-orange-500 hover:bg-orange-600 mt-2 sm:mt-0"
                  >
-                   Confirmar Presença
+                   Confirmar Convite
                  </Button>
                </form>
             </motion.div>
