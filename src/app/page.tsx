@@ -1,9 +1,9 @@
 import { Hero } from "@/components/Hero"
 import { OpensCredit } from "@/components/OpensCredit"
-import { Features } from "@/components/Features"
 import { People } from "@/components/People"
 import { Agenda } from "@/components/Agenda"
 import { Manifesto } from "@/components/Manifesto"
+import { Exclusivity } from "@/components/Exclusivity"
 import { Footer } from "@/components/Footer"
 
 /**
@@ -13,14 +13,14 @@ import { Footer } from "@/components/Footer"
 export default function Home() {
   return (
     <main className="min-h-screen">
-      {/* Seção Hero - Cabeçalho principal */}
-      <Hero />
-      
       {/* Seção Opens Credit - Créditos da Opens Tecnologia */}
       <OpensCredit />
       
-      {/* Seção Features - Por que você não pode ficar de fora */}
-      <Features />
+      {/* Seção Hero - Cabeçalho principal */}
+      <Hero />
+      
+      {/* Seção Exclusivity - Por que este evento é diferente */}
+      <Exclusivity />
       
       {/* Seção People - Pessoas que fazem acontecer */}
       <People />

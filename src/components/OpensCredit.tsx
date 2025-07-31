@@ -4,8 +4,8 @@ import Image from "next/image"
 
 export function OpensCredit() {
   return (
-    <section className="bg-purple-900 py-4">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="bg-purple-900 h-[5vh] flex items-center">
+      <div className="w-full">
         <div className="flex items-center justify-center gap-3 text-white/80">
           <span className="text-sm font-medium">
             Organizado com ❤️ por Opens Tecnologia

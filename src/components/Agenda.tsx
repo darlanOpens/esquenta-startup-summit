@@ -97,18 +97,20 @@ export function Agenda() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             viewport={{ once: true }}
-          >
-            O que vai rolar
-          </motion.h2>
+          >O que vai rolar</motion.h2>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
             viewport={{ once: true }}
           >
-            <p className="text-xl text-white/80 max-w-3xl mx-auto">
+            <p className="text-xl text-white/80 max-w-3xl mx-auto mb-4">
               Uma programação cuidadosamente pensada para reconectar você ao propósito da comunicação
             </p>
+            <div className="bg-orange-500/20 border border-orange-500/30 rounded-lg p-4 max-w-md mx-auto">
+              <p className="text-orange-200 font-semibold">📍 Local: Blackpot Restaurant Floripa</p>
+              <p className="text-orange-100 text-sm">28 de agosto • 09h às 12h</p>
+            </div>
           </motion.div>
         </motion.div>
 
