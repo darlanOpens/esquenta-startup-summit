@@ -15,7 +15,7 @@ export function Hero() {
   // Estados para o formulário
   const [email, setEmail] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isSubmitted, setIsSubmitted] = useState(false)
+  const [isSubmitted] = useState(false)
   
   // Variáveis para controlar o tamanho da imagem de fundo por breakpoint
   const mobileImageScale = 1.0; // Escala para mobile (ajuste conforme necessário)
@@ -56,7 +56,7 @@ export function Hero() {
       if (response.ok && data.success && data.redirectUrl) {
         window.location.href = data.redirectUrl
       } else if (response.ok) {
-        setIsSubmitted(true)
+        // Não mostra mensagem de sucesso, apenas limpa o email
         setEmail('')
       } else {
         throw new Error('Erro ao confirmar convite')
