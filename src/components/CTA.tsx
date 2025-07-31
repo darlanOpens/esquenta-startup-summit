@@ -162,7 +162,11 @@ export function CTA() {
         body: JSON.stringify(dataWithUTM),
       })
       
-      if (response.ok) {
+      const responseData = await response.json()
+      
+      if (response.ok && responseData.success && responseData.redirectUrl) {
+        window.location.href = responseData.redirectUrl
+      } else if (response.ok) {
         setIsSubmitted(true)
         reset()
       } else {

@@ -43,7 +43,11 @@ export function WaitingList() {
         body: JSON.stringify(dataWithUTM),
       })
       
-      if (response.ok) {
+      const data = await response.json()
+      
+      if (response.ok && data.success && data.redirectUrl) {
+        window.location.href = data.redirectUrl
+      } else if (response.ok) {
         setIsSubmitted(true)
       } else {
         throw new Error('Erro ao entrar na lista de espera')

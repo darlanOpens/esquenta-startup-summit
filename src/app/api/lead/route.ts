@@ -5,10 +5,9 @@ import { z } from 'zod'
  * Schema de validação para os dados do lead
  */
 const leadSchema = z.object({
-  nome: z.string().min(2, 'Nome deve ter pelo menos 2 caracteres'),
   email: z.string().email('Email inválido'),
-  empresa: z.string().min(2, 'Nome da empresa deve ter pelo menos 2 caracteres'),
-  lgpd: z.boolean().refine(val => val === true, 'Você deve aceitar os termos'),
+  form_title: z.string().min(1, 'Título do formulário é obrigatório'),
+  form_id: z.string().min(1, 'ID do formulário é obrigatório'),
   // Campos UTM
   utm_source: z.string().optional(),
   utm_medium: z.string().optional(),

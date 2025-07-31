@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { ArrowDown, Calendar, Clock, MapPin } from "lucide-react"
 import Image from "next/image"
 import { useState } from "react"
-import { addUTMToFormData } from "@/lib/utm"
+
 
 /**
  * Componente Hero da landing page
@@ -39,27 +39,23 @@ export function Hero() {
     setIsSubmitting(true)
     
     try {
-      // Dados básicos do formulário
-      const formData = {
-        email: email,
-        // Campos obrigatórios da API lead (usando valores padrão para convite)
-        nome: 'Convite Pessoal',
-        empresa: 'A definir',
-        lgpd: true
-      }
-      
-      // Adiciona dados UTM ao formulário
-      const dataWithUTM = addUTMToFormData(formData)
-      
       const response = await fetch('/esquenta/api/lead', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(dataWithUTM),
+        body: JSON.stringify({
+          email: email,
+          form_title: "Esquenta",
+          form_id: "Esquenta"
+        }),
       })
       
-      if (response.ok) {
+      const data = await response.json()
+      
+      if (response.ok && data.success && data.redirectUrl) {
+        window.location.href = data.redirectUrl
+      } else if (response.ok) {
         setIsSubmitted(true)
         setEmail('')
       } else {
