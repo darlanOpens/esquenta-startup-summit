@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Calendar, Clock, MapPin, Users, AlertCircle } from "lucide-react"
 import { useState } from "react"
 import Image from "next/image"
+import { addUTMToFormData } from "@/lib/utm"
 
 /**
  * Componente de Lista de Espera
@@ -30,11 +31,29 @@ export function WaitingList() {
     e.preventDefault()
     setIsSubmitting(true)
     
-    // Simular envio do formulário
-    await new Promise(resolve => setTimeout(resolve, 2000))
-    
-    setIsSubmitted(true)
-    setIsSubmitting(false)
+    try {
+      // Adiciona dados UTM ao formulário
+      const dataWithUTM = addUTMToFormData(formData)
+      
+      const response = await fetch('/api/waiting-list', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(dataWithUTM),
+      })
+      
+      if (response.ok) {
+        setIsSubmitted(true)
+      } else {
+        throw new Error('Erro ao entrar na lista de espera')
+      }
+    } catch (error) {
+      console.error('Erro:', error)
+      alert('Erro ao entrar na lista de espera. Tente novamente.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
 

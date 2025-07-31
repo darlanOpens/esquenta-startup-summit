@@ -2,13 +2,14 @@ import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 
 /**
- * Schema de validação para os dados do lead
+ * Schema de validação para lista de espera
  */
-const leadSchema = z.object({
+const waitingListSchema = z.object({
   nome: z.string().min(2, 'Nome deve ter pelo menos 2 caracteres'),
   email: z.string().email('Email inválido'),
+  telefone: z.string().min(10, 'Telefone deve ter pelo menos 10 caracteres'),
   empresa: z.string().min(2, 'Nome da empresa deve ter pelo menos 2 caracteres'),
-  lgpd: z.boolean().refine(val => val === true, 'Você deve aceitar os termos'),
+  cargo: z.string().min(2, 'Cargo deve ter pelo menos 2 caracteres'),
   // Campos UTM
   utm_source: z.string().optional(),
   utm_medium: z.string().optional(),
@@ -32,7 +33,7 @@ async function sendWebhook(data: any, webhookUrl: string) {
       body: JSON.stringify({
         ...data,
         timestamp: new Date().toISOString(),
-        form_type: 'lead'
+        form_type: 'waiting_list'
       })
     })
     
@@ -45,18 +46,17 @@ async function sendWebhook(data: any, webhookUrl: string) {
 }
 
 /**
- * Endpoint POST para captura de leads
- * Recebe os dados do formulário e processa a inscrição
+ * Endpoint POST para lista de espera
  */
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
     
     // Validação dos dados usando Zod
-    const validatedData = leadSchema.parse(body)
+    const validatedData = waitingListSchema.parse(body)
     
-    // Log dos dados recebidos (em produção, enviar para serviço de email/CRM)
-    console.log('Novo lead capturado:', {
+    // Log dos dados recebidos
+    console.log('Inscrição na lista de espera:', {
       ...validatedData,
       timestamp: new Date().toISOString(),
       userAgent: request.headers.get('user-agent'),
@@ -64,8 +64,8 @@ export async function POST(request: NextRequest) {
     })
     
     // Enviar webhook se configurado
-    const webhookUrl = process.env.WEBHOOK_LEAD_URL
-    if (webhookUrl && webhookUrl !== 'https://webhook.site/your-lead-webhook-url') {
+    const webhookUrl = process.env.WEBHOOK_WAITING_LIST_URL
+    if (webhookUrl && webhookUrl !== 'https://webhook.site/your-waiting-list-webhook-url') {
       await sendWebhook({
         ...validatedData,
         userAgent: request.headers.get('user-agent'),
@@ -73,20 +73,17 @@ export async function POST(request: NextRequest) {
       }, webhookUrl)
     }
     
-    // Simulação de processamento
-    await new Promise(resolve => setTimeout(resolve, 1000))
-    
     // Resposta de sucesso
     return NextResponse.json(
       { 
         success: true, 
-        message: 'Inscrição realizada com sucesso!' 
+        message: 'Inscrição na lista de espera realizada com sucesso!' 
       },
       { status: 200 }
     )
     
   } catch (error) {
-    console.error('Erro ao processar lead:', error)
+    console.error('Erro ao processar lista de espera:', error)
     
     // Erro de validação
     if (error instanceof z.ZodError) {
@@ -117,7 +114,7 @@ export async function POST(request: NextRequest) {
 export async function GET() {
   return NextResponse.json(
     { 
-      message: 'API de captura de leads funcionando',
+      message: 'API de lista de espera funcionando',
       timestamp: new Date().toISOString()
     },
     { status: 200 }

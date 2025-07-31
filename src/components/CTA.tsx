@@ -5,6 +5,7 @@ import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
+import { addUTMToFormData } from "@/lib/utm"
 import { Button } from "@/components/ui/button"
 import { CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -16,10 +17,10 @@ import { CheckCircle, MapPin, Clock, Shirt, ArrowRight } from "lucide-react"
  * Schema de validação do formulário usando Zod
  */
 const formSchema = z.object({
-  nome: z.string().min(2, "Nome deve ter pelo menos 2 caracteres"),
-  email: z.string().email("Email inválido"),
-  empresa: z.string().min(2, "Nome da empresa deve ter pelo menos 2 caracteres"),
-  lgpd: z.boolean().refine(val => val === true, "Você deve aceitar os termos")
+  nome: z.string().min(2, 'Nome deve ter pelo menos 2 caracteres'),
+  email: z.string().email('Email inválido'),
+  empresa: z.string().min(2, 'Nome da empresa deve ter pelo menos 2 caracteres'),
+  lgpd: z.boolean().refine(val => val === true, 'Você deve aceitar os termos')
 })
 
 type FormData = z.infer<typeof formSchema>
@@ -150,12 +151,15 @@ export function CTA() {
     setIsLoading(true)
     
     try {
+      // Adiciona dados UTM ao formulário
+      const dataWithUTM = addUTMToFormData(data)
+      
       const response = await fetch('/api/lead', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(dataWithUTM),
       })
       
       if (response.ok) {
