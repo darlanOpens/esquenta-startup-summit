@@ -23,7 +23,7 @@ const waitingListSchema = z.object({
 /**
  * Função para enviar webhook
  */
-async function sendWebhook(data: any, webhookUrl: string) {
+async function sendWebhook(data: Record<string, unknown>, webhookUrl: string) {
   try {
     const response = await fetch(webhookUrl, {
       method: 'POST',
