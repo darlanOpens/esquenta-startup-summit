@@ -54,7 +54,7 @@ export function ConfirmPresence() {
       // Adiciona dados UTM ao formulário
       const dataWithUTM = addUTMToFormData(formData)
       
-      const response = await fetch('/esquenta/api/confirm-presence', {
+      const response = await fetch('/api/confirm-presence', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

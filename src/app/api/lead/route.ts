@@ -5,9 +5,10 @@ import { z } from 'zod'
  * Schema de validação para os dados do lead
  */
 const leadSchema = z.object({
+  nome: z.string().min(2, 'Nome deve ter pelo menos 2 caracteres'),
   email: z.string().email('Email inválido'),
-  form_title: z.string().min(1, 'Título do formulário é obrigatório'),
-  form_id: z.string().min(1, 'ID do formulário é obrigatório'),
+  empresa: z.string().min(2, 'Nome da empresa deve ter pelo menos 2 caracteres'),
+  lgpd: z.boolean().refine(val => val === true, 'Você deve aceitar os termos'),
   // Campos UTM
   utm_source: z.string().optional(),
   utm_medium: z.string().optional(),
@@ -21,7 +22,7 @@ const leadSchema = z.object({
 /**
  * Função para enviar webhook
  */
-async function sendWebhook(data: Record<string, unknown>, webhookUrl: string) {
+async function sendWebhook(data: any, webhookUrl: string) {
   try {
     const response = await fetch(webhookUrl, {
       method: 'POST',
@@ -37,14 +38,9 @@ async function sendWebhook(data: Record<string, unknown>, webhookUrl: string) {
     
     if (!response.ok) {
       console.error('Erro ao enviar webhook:', response.statusText)
-      return null
     }
-    
-    const webhookResponse = await response.json()
-    return webhookResponse
   } catch (error) {
     console.error('Erro ao enviar webhook:', error)
-    return null
   }
 }
 
@@ -69,10 +65,8 @@ export async function POST(request: NextRequest) {
     
     // Enviar webhook se configurado
     const webhookUrl = process.env.WEBHOOK_LEAD_URL
-    let webhookResponse = null
-    
     if (webhookUrl && webhookUrl !== 'https://webhook.site/your-lead-webhook-url') {
-      webhookResponse = await sendWebhook({
+      await sendWebhook({
         ...validatedData,
         userAgent: request.headers.get('user-agent'),
         ip: request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip')
@@ -82,22 +76,14 @@ export async function POST(request: NextRequest) {
     // Simulação de processamento
     await new Promise(resolve => setTimeout(resolve, 1000))
     
-    // Resposta de sucesso com redirectUrl do webhook se disponível
-    const responseData: {
-      success: boolean;
-      message: string;
-      redirectUrl?: string;
-    } = {
-      success: true,
-      message: 'Inscrição realizada com sucesso!'
-    }
-    
-    // Adiciona redirectUrl se retornado pelo webhook
-    if (webhookResponse && webhookResponse.redirectUrl) {
-      responseData.redirectUrl = webhookResponse.redirectUrl
-    }
-    
-    return NextResponse.json(responseData, { status: 200 })
+    // Resposta de sucesso
+    return NextResponse.json(
+      { 
+        success: true, 
+        message: 'Inscrição realizada com sucesso!' 
+      },
+      { status: 200 }
+    )
     
   } catch (error) {
     console.error('Erro ao processar lead:', error)

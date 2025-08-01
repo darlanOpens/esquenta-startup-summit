@@ -154,7 +154,7 @@ export function CTA() {
       // Adiciona dados UTM ao formulário
       const dataWithUTM = addUTMToFormData(data)
       
-      const response = await fetch('/esquenta/api/lead', {
+      const response = await fetch('/api/lead', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -162,11 +162,7 @@ export function CTA() {
         body: JSON.stringify(dataWithUTM),
       })
       
-      const responseData = await response.json()
-      
-      if (response.ok && responseData.success && responseData.redirectUrl) {
-        window.location.href = responseData.redirectUrl
-      } else if (response.ok) {
+      if (response.ok) {
         setIsSubmitted(true)
         reset()
       } else {

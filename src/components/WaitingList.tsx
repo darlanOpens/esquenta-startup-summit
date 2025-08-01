@@ -35,7 +35,7 @@ export function WaitingList() {
       // Adiciona dados UTM ao formulário
       const dataWithUTM = addUTMToFormData(formData)
       
-      const response = await fetch('/esquenta/api/waiting-list', {
+      const response = await fetch('/api/waiting-list', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -43,11 +43,7 @@ export function WaitingList() {
         body: JSON.stringify(dataWithUTM),
       })
       
-      const data = await response.json()
-      
-      if (response.ok && data.success && data.redirectUrl) {
-        window.location.href = data.redirectUrl
-      } else if (response.ok) {
+      if (response.ok) {
         setIsSubmitted(true)
       } else {
         throw new Error('Erro ao entrar na lista de espera')
