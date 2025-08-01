@@ -128,3 +128,74 @@ body {
 .bg-gradient-radial {
   background: radial-gradient(circle at center, var(--tw-gradient-stops));
 }
+
+/* Media queries para altura da viewport - mantém 95vh com ajustes responsivos */
+@media (max-width: 640px) {
+  .hero-section {
+    height: 95vh !important;
+    padding-top: 0.75rem !important;
+    padding-bottom: 0.75rem !important;
+  }
+  
+  .hero-content {
+    padding-top: 0.25rem !important;
+  }
+  
+  .hero-title {
+    font-size: 1rem !important;
+    line-height: 1.3 !important;
+    margin-bottom: 0.5rem !important;
+  }
+  
+  .hero-subtitle {
+    font-size: 0.75rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+  
+  .hero-form {
+    margin-top: 0.75rem !important;
+  }
+}
+
+@media (max-height: 640px) {
+  .hero-section {
+    height: 95vh !important;
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+  }
+  
+  .hero-content {
+    padding-top: 0.25rem !important;
+  }
+  
+  .hero-title {
+    font-size: 1rem !important;
+    line-height: 1.3 !important;
+    margin-bottom: 0.5rem !important;
+  }
+  
+  .hero-subtitle {
+    font-size: 0.75rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+}
+
+@media (max-height: 500px) {
+  .hero-section {
+    height: 95vh !important;
+  }
+  
+  .hero-title {
+    font-size: 0.9rem !important;
+    margin-bottom: 0.25rem !important;
+  }
+  
+  .hero-subtitle {
+    font-size: 0.7rem !important;
+    margin-bottom: 0.25rem !important;
+  }
+  
+  .hero-form {
+    margin-top: 0.5rem !important;
+  }
+}

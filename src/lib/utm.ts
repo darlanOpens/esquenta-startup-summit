@@ -39,7 +39,7 @@ export function getUTMData(): UTMData {
 /**
  * Adiciona dados UTM aos dados do formulário
  */
-export function addUTMToFormData<T extends Record<string, any>>(formData: T): T & UTMData {
+export function addUTMToFormData<T extends Record<string, unknown>>(formData: T): T & UTMData {
   const utmData = getUTMData()
   return {
     ...formData,

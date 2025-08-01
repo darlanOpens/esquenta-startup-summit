@@ -18,7 +18,8 @@ export function Hero() {
   const [isSubmitted] = useState(false)
   
   // Variáveis para controlar o tamanho da imagem de fundo por breakpoint
-  const mobileImageScale = 1.0; // Escala para mobile (ajuste conforme necessário)
+  // Ajustado para resolver problemas de sobreposição em telas pequenas
+  const mobileImageScale = 0.7; // Escala reduzida para mobile para evitar sobreposição
   const desktopImageScale = 0.55; // Escala para desktop (mantém tamanho original)
   
   /**
@@ -70,7 +71,7 @@ export function Hero() {
   }
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-start px-4 py-6 md:py-20">
+    <section className="hero-section relative h-[95vh] flex flex-col items-center justify-start px-4 py-4 sm:py-8 md:py-16 lg:py-20">
       {/* Background com imagem */}
       <div className="absolute inset-0 -z-10">
         {/* Pattern/Textura de fundo */}
@@ -130,7 +131,7 @@ export function Hero() {
       </div>
       
       {/* Conteúdo principal */}
-      <div className="relative z-10 max-w-7xl mx-auto">
+      <div className="hero-content relative z-10 max-w-7xl mx-auto pt-2 sm:pt-4 md:pt-12 lg:pt-0">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
           {/* Coluna esquerda - Conteúdo */}
           <div className="text-center lg:text-left flex flex-col items-center lg:items-start pt-4 lg:pt-0">
@@ -152,13 +153,13 @@ export function Hero() {
             </motion.div>
 
             {/* Cápsulas superiores */}
-            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 mb-6">
+            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-2 sm:gap-3 mb-3 sm:mb-6">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
-                <div className="inline-flex items-center gap-1.5 px-4 py-2 bg-white/20 backdrop-blur-md rounded-full border border-white/30 shadow-lg shadow-black/20">
+                <div className="inline-flex items-center gap-1 sm:gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 bg-white/20 backdrop-blur-md rounded-full border border-white/30 shadow-lg shadow-black/20">
                    <span className="text-orange-500 font-semibold text-xs">Brunch</span>
                    <span className="text-white/60">•</span>
                    <span className="text-orange-500 font-semibold text-xs">Insights</span>
@@ -172,7 +173,7 @@ export function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
-                <div className="inline-flex items-center gap-1.5 px-4 py-3 bg-gradient-to-r from-green-500/20 to-emerald-500/20 backdrop-blur-md rounded-full border border-green-400/40 shadow-lg shadow-green-500/20">
+                <div className="inline-flex items-center gap-1 sm:gap-1.5 px-3 sm:px-4 py-2 sm:py-3 bg-gradient-to-r from-green-500/20 to-emerald-500/20 backdrop-blur-md rounded-full border border-green-400/40 shadow-lg shadow-green-500/20">
                    <span className="text-green-300 font-semibold text-xs">Evento gratuito para convidados</span>
                  </div>
               </motion.div>
@@ -191,7 +192,7 @@ export function Hero() {
                initial={{ opacity: 0, y: 20 }}
                animate={{ opacity: 1, y: 0 }}
                transition={{ duration: 0.8, delay: 0.4 }}
-               className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 leading-tight"
+               className="hero-title text-lg sm:text-xl md:text-4xl lg:text-5xl font-bold mb-2 sm:mb-4 md:mb-6 leading-tight"
              >
                <span className="text-white">
                  🍽️ BRUNCH VIP |{" "}
@@ -204,9 +205,9 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="text-sm md:text-base text-white/80 mb-4"
+              className="hero-subtitle text-xs sm:text-sm md:text-base text-white/80 mb-3 sm:mb-4"
             >
-              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2 sm:gap-4 text-blue-200 font-semibold text-sm">
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-1 sm:gap-2 md:gap-4 text-blue-200 font-semibold text-xs sm:text-sm">
                 <div className="flex items-center gap-1.5">
                   <Calendar className="h-4 w-4 text-orange-400" />
                   <span>28 de agosto</span>
@@ -227,7 +228,7 @@ export function Hero() {
                   </a>
                 </div>
               </div>
-              <p className="mt-3 text-sm sm:text-base md:text-lg leading-relaxed">
+              <p className="mt-2 sm:mt-3 text-xs sm:text-sm md:text-lg leading-relaxed">
                 Um encontro exclusivo nas vésperas do Startup Summit 2025 para quem acredita que o futuro dos negócios passa pela experiência do cliente.
               </p>
             </motion.div>
@@ -237,7 +238,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.8 }}
-              className="mt-6 md:mt-8 w-full max-w-md mx-auto lg:mx-0"
+              className="hero-form mt-4 sm:mt-6 md:mt-8 w-full max-w-md mx-auto lg:mx-0"
             >
               {!isSubmitted ? (
                 <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row bg-white/10 backdrop-blur-md border border-white/30 rounded-lg overflow-hidden">

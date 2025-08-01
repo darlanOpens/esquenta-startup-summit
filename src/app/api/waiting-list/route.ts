@@ -21,9 +21,16 @@ const waitingListSchema = z.object({
 })
 
 /**
+ * Interface para dados do webhook
+ */
+interface WebhookData {
+  [key: string]: unknown
+}
+
+/**
  * Função para enviar webhook
  */
-async function sendWebhook(data: any, webhookUrl: string) {
+async function sendWebhook(data: WebhookData, webhookUrl: string) {
   try {
     const response = await fetch(webhookUrl, {
       method: 'POST',
