@@ -284,7 +284,7 @@ export function CTA() {
                         </Label>
                         <div className="relative mt-2">
                           <Input
-                            {...register("nome")}
+                            {...register("nome", { required: true, setValueAs: (value) => value || '' })}
                             type="text"
                             id="nome"
                             className="bg-white/5 border border-white/10 text-white placeholder:text-white/50 focus:border-orange-400/50 focus:ring-orange-400/20 transition-all duration-300 backdrop-blur-sm"
@@ -316,7 +316,7 @@ export function CTA() {
                         </Label>
                         <div className="relative mt-2">
                           <Input
-                            {...register("email")}
+                            {...register("email", { required: true, setValueAs: (value) => value || '' })}
                             type="email"
                             id="email"
                             className="bg-white/5 border border-white/10 text-white placeholder:text-white/50 focus:border-orange-400/50 focus:ring-orange-400/20 transition-all duration-300 backdrop-blur-sm"
@@ -348,7 +348,7 @@ export function CTA() {
                         </Label>
                         <div className="relative mt-2">
                           <Input
-                            {...register("empresa")}
+                            {...register("empresa", { required: true, setValueAs: (value) => value || '' })}
                             type="text"
                             id="empresa"
                             className="bg-white/5 border border-white/10 text-white placeholder:text-white/50 focus:border-orange-400/50 focus:ring-orange-400/20 transition-all duration-300 backdrop-blur-sm"

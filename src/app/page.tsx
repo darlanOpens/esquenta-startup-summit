@@ -3,6 +3,7 @@ import { OpensCredit } from "@/components/OpensCredit"
 import { People } from "@/components/People"
 import { Manifesto } from "@/components/Manifesto"
 import { Exclusivity } from "@/components/Exclusivity"
+import { CTA } from "@/components/CTA"
 import { Footer } from "@/components/Footer"
 
 /**
@@ -26,6 +27,9 @@ export default function Home() {
       
       {/* Seção Manifesto - Nosso Manifesto em 1 minuto */}
       <Manifesto />
+      
+      {/* Seção CTA - Formulário de inscrição */}
+      <CTA />
       
       {/* Footer - Rodapé */}
       <Footer />
