@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/brunch-vip/bg hero2.png",
         width: 1200,
         height: 630,
         alt: "Brunch VIP Startup Summit - Opens",
