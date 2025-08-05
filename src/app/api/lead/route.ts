@@ -8,13 +8,13 @@ const heroFormSchema = z.object({
   form_id: z.string().optional(),
 });
 
-// Schema para a resposta que esperamos receber do webhook externo.
+// Schema para a resposta do webhook. Agora aceita qualquer string para redirectUrl.
 const webhookResponseSchema = z.object({
-    redirectUrl: z.string().startsWith('/'), // Esperamos um caminho relativo, ex: "/confirmar-presenca"
+    redirectUrl: z.string(), // Validação mais flexível
 });
 
 /**
- * Chama o webhook externo, envia os dados do lead e aguarda uma resposta com a URL de redirecionamento.
+ * Chama o webhook externo e aguarda a resposta.
  */
 async function getRedirectUrlFromWebhook(data: object, webhookUrl: string): Promise<string> {
   try {
@@ -22,18 +22,15 @@ async function getRedirectUrlFromWebhook(data: object, webhookUrl: string): Prom
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
-      signal: AbortSignal.timeout(10000) // Timeout de 10 segundos
+      signal: AbortSignal.timeout(20000) // Timeout aumentado para 20 segundos
     });
 
     if (!response.ok) {
       console.error('Webhook retornou um erro:', response.status, response.statusText);
-      // URL de fallback se o webhook falhar.
-      return '/brunch-vip/lista-espera';
+      return '/brunch-vip/lista-espera'; // Fallback
     }
 
     const responseData = await response.json();
-    
-    // Valida se a resposta do webhook tem o formato esperado.
     const validatedWebhookResponse = webhookResponseSchema.safeParse(responseData);
 
     if (!validatedWebhookResponse.success) {
@@ -45,8 +42,7 @@ async function getRedirectUrlFromWebhook(data: object, webhookUrl: string): Prom
 
   } catch (error) {
     console.error('Erro ao chamar o webhook:', error);
-    // URL de fallback em caso de erro de rede, timeout, etc.
-    return '/brunch-vip/lista-espera';
+    return '/brunch-vip/lista-espera'; // Fallback
   }
 }
 
@@ -60,7 +56,7 @@ export async function POST(request: NextRequest) {
       console.error('A variável de ambiente WEBHOOK_LEAD_URL não está configurada.');
       return NextResponse.json(
           { success: false, message: 'Serviço indisponível: Webhook não configurado.' },
-          { status: 503 } // Service Unavailable
+          { status: 503 }
       );
   }
 
