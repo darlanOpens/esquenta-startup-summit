@@ -77,8 +77,8 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className="scroll-smooth">
       <head>
-        <link rel="icon" href="/Logo Opens.png" type="image/png" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="icon" href="brunch-vip/logo_opens.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="brunch-vip/apple-touch-icon.png" />
         <meta name="theme-color" content="#8B5CF6" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>

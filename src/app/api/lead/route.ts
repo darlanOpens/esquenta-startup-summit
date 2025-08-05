@@ -1,132 +1,114 @@
-import { NextRequest, NextResponse } from 'next/server'
-import { z } from 'zod'
+import { NextRequest, NextResponse } from 'next/server';
+import { z } from 'zod';
 
-/**
- * Schema de validação para os dados do lead
- */
-const leadSchema = z.object({
-  nome: z.string().min(2, 'Nome deve ter pelo menos 2 caracteres'),
+// Schema para os dados que chegam do formulário do Hero.
+const heroFormSchema = z.object({
   email: z.string().email('Email inválido'),
-  empresa: z.string().min(2, 'Nome da empresa deve ter pelo menos 2 caracteres'),
-  lgpd: z.boolean().refine(val => val === true, 'Você deve aceitar os termos'),
-  // Campos UTM
-  utm_source: z.string().optional(),
-  utm_medium: z.string().optional(),
-  utm_campaign: z.string().optional(),
-  utm_term: z.string().optional(),
-  utm_content: z.string().optional(),
-  // URL de envio
-  referrer_url: z.string().optional()
-})
+  form_title: z.string().optional(),
+  form_id: z.string().optional(),
+});
+
+// Schema para a resposta que esperamos receber do webhook externo.
+const webhookResponseSchema = z.object({
+    redirectUrl: z.string().startsWith('/'), // Esperamos um caminho relativo, ex: "/confirmar-presenca"
+});
 
 /**
- * Interface para dados do webhook
+ * Chama o webhook externo, envia os dados do lead e aguarda uma resposta com a URL de redirecionamento.
  */
-interface WebhookData {
-  [key: string]: unknown
-}
-
-/**
- * Função para enviar webhook
- */
-async function sendWebhook(data: WebhookData, webhookUrl: string) {
+async function getRedirectUrlFromWebhook(data: object, webhookUrl: string): Promise<string> {
   try {
     const response = await fetch(webhookUrl, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        ...data,
-        timestamp: new Date().toISOString(),
-        form_type: 'lead'
-      })
-    })
-    
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+      signal: AbortSignal.timeout(10000) // Timeout de 10 segundos
+    });
+
     if (!response.ok) {
-      console.error('Erro ao enviar webhook:', response.statusText)
+      console.error('Webhook retornou um erro:', response.status, response.statusText);
+      // URL de fallback se o webhook falhar.
+      return '/brunch-vip/lista-espera';
     }
+
+    const responseData = await response.json();
+    
+    // Valida se a resposta do webhook tem o formato esperado.
+    const validatedWebhookResponse = webhookResponseSchema.safeParse(responseData);
+
+    if (!validatedWebhookResponse.success) {
+        console.error("Resposta inválida do webhook:", validatedWebhookResponse.error);
+        return '/brunch-vip/lista-espera'; // Fallback
+    }
+
+    return validatedWebhookResponse.data.redirectUrl;
+
   } catch (error) {
-    console.error('Erro ao enviar webhook:', error)
+    console.error('Erro ao chamar o webhook:', error);
+    // URL de fallback em caso de erro de rede, timeout, etc.
+    return '/brunch-vip/lista-espera';
   }
 }
 
 /**
- * Endpoint POST para captura de leads
- * Recebe os dados do formulário e processa a inscrição
+ * Endpoint POST que recebe o email, consulta o webhook e retorna a URL de redirecionamento.
  */
 export async function POST(request: NextRequest) {
+  const webhookUrl = process.env.WEBHOOK_LEAD_URL;
+
+  if (!webhookUrl || webhookUrl.includes('your-lead-webhook-url')) {
+      console.error('A variável de ambiente WEBHOOK_LEAD_URL não está configurada.');
+      return NextResponse.json(
+          { success: false, message: 'Serviço indisponível: Webhook não configurado.' },
+          { status: 503 } // Service Unavailable
+      );
+  }
+
   try {
-    const body = await request.json()
-    
-    // Validação dos dados usando Zod
-    const validatedData = leadSchema.parse(body)
-    
-    // Log dos dados recebidos (em produção, enviar para serviço de email/CRM)
-    console.log('Novo lead capturado:', {
+    const body = await request.json();
+    const validatedData = heroFormSchema.parse(body);
+
+    const webhookPayload = {
       ...validatedData,
       timestamp: new Date().toISOString(),
       userAgent: request.headers.get('user-agent'),
-      ip: request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip')
-    })
-    
-    // Enviar webhook se configurado
-    const webhookUrl = process.env.WEBHOOK_LEAD_URL
-    if (webhookUrl && webhookUrl !== 'https://webhook.site/your-lead-webhook-url') {
-      await sendWebhook({
-        ...validatedData,
-        userAgent: request.headers.get('user-agent'),
-        ip: request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip')
-      }, webhookUrl)
-    }
-    
-    // Simulação de processamento
-    await new Promise(resolve => setTimeout(resolve, 1000))
-    
-    // Resposta de sucesso
+      ip: request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip'),
+    };
+
+    const redirectUrl = await getRedirectUrlFromWebhook(webhookPayload, webhookUrl);
+
     return NextResponse.json(
       { 
         success: true, 
-        message: 'Inscrição realizada com sucesso!' 
+        redirectUrl: redirectUrl 
       },
       { status: 200 }
-    )
-    
+    );
+
   } catch (error) {
-    console.error('Erro ao processar lead:', error)
-    
-    // Erro de validação
+    console.error('Erro ao processar o lead:', error);
     if (error instanceof z.ZodError) {
       return NextResponse.json(
-        { 
-          success: false, 
-          message: 'Dados inválidos',
-          errors: error.issues
-        },
+        { success: false, message: 'Dados inválidos.', errors: error.issues },
         { status: 400 }
-      )
+      );
     }
-    
-    // Erro interno do servidor
     return NextResponse.json(
-      { 
-        success: false, 
-        message: 'Erro interno do servidor' 
-      },
+      { success: false, message: 'Erro interno do servidor.' },
       { status: 500 }
-    )
+    );
   }
 }
 
 /**
- * Endpoint GET para verificar se a API está funcionando
+ * Endpoint GET para verificar o status da API.
  */
 export async function GET() {
   return NextResponse.json(
     { 
-      message: 'API de captura de leads funcionando',
+      message: 'API de verificação de leads (via Webhook) está funcionando.',
       timestamp: new Date().toISOString()
     },
     { status: 200 }
-  )
+  );
 }
