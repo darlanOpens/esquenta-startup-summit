@@ -1,5 +1,5 @@
 **Headline (H1)**  
- **Esquenta Startup Summit: o Brunch que reconecta você ao propósito da comunicação**
+ **Brunch VIP Startup Summit: o Brunch que reconecta você ao propósito da comunicação**
 
 **Sub‑headline**  
  28 de agosto · 09h – 12h · Florianópolis  
@@ -42,7 +42,7 @@
 
 ## **Nosso Manifesto em 1 minuto**
 
-Na Opens, acreditamos que **atender é conectar**. Cada conversa é a chance de transformar um problema em confiança, um dado em história, um cliente em comunidade. Nossa tecnologia é poderosa, mas o que nos move são as pessoas — e é isso que queremos compartilhar com você no Esquenta.
+Na Opens, acreditamos que **atender é conectar**. Cada conversa é a chance de transformar um problema em confiança, um dado em história, um cliente em comunidade. Nossa tecnologia é poderosa, mas o que nos move são as pessoas — e é isso que queremos compartilhar com você no Brunch VIP.
 
 ---
 

@@ -13,6 +13,6 @@ export default function WaitingListPage() {
 }
 
 export const metadata = {
-  title: 'Lista de Espera - Esquenta Startup Summit',
-  description: 'Entre na lista de espera para ser notificado sobre novas vagas do Esquenta Startup Summit.',
+  title: 'Lista de Espera - Brunch VIP Startup Summit',
+  description: 'Entre na lista de espera para ser notificado sobre novas vagas do Brunch VIP Startup Summit.',
 }

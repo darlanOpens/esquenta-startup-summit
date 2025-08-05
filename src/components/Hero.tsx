@@ -40,15 +40,15 @@ export function Hero() {
     setIsSubmitting(true)
     
     try {
-      const response = await fetch('/esquenta/api/lead', {
+      const response = await fetch('/brunch-vip/api/lead', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           email: email,
-          form_title: "Esquenta",
-          form_id: "Esquenta"
+          form_title: "Brunch VIP",
+          form_id: "Brunch VIP"
         }),
       })
       
@@ -77,7 +77,7 @@ export function Hero() {
         {/* Pattern/Textura de fundo */}
         <div className="absolute inset-0 opacity-50">
           <Image
-            src="/esquenta/bg.png"
+            src="/brunch-vip/bg.png"
             alt="Pattern Background"
             fill
             className="object-cover"
@@ -95,7 +95,7 @@ export function Hero() {
           }}
         >
           <Image
-            src="/esquenta/bg hero.png"
+            src="/brunch-vip/bg hero.png"
             alt="Background Hero"
             width={1920}
             height={1080}
@@ -115,7 +115,7 @@ export function Hero() {
           }}
         >
           <Image
-            src="/esquenta/bg hero.png"
+            src="/brunch-vip/bg hero.png"
             alt="Background Hero"
             width={1920}
             height={1080}
@@ -143,8 +143,8 @@ export function Hero() {
               className="mb-4"
             >
               <Image
-                src="/esquenta/logo-esquenta.png"
-                alt="Logo Esquenta Startup Summit"
+                src="/brunch-vip/logo-esquenta.png"
+                alt="Logo Brunch VIP Startup Summit"
                 width={200}
                 height={160}
                 className="h-16 w-auto object-contain"

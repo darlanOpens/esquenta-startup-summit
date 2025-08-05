@@ -7,7 +7,7 @@ import { CTA } from "@/components/CTA"
 import { Footer } from "@/components/Footer"
 
 /**
- * Página principal da Landing Page do Esquenta Startup Summit
+ * Página principal da Landing Page do Brunch VIP Startup Summit
  * Implementa todas as seções seguindo o design system e copy fornecidos
  */
 export default function Home() {

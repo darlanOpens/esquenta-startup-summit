@@ -1,6 +1,6 @@
-# Esquenta Startup Summit - Landing Page
+# Brunch VIP Startup Summit - Landing Page
 
-Landing page moderna e responsiva para o evento "Esquenta Startup Summit" da Opens, desenvolvida com Next.js 15, TypeScript e Tailwind CSS.
+Landing page moderna e responsiva para o evento "Brunch VIP Startup Summit" da Opens, desenvolvida com Next.js 15, TypeScript e Tailwind CSS.
 
 ## 🚀 Tecnologias Utilizadas
 
@@ -85,7 +85,7 @@ O projeto implementa um design system completo baseado no arquivo `design.json` 
 ```bash
 # Clone o repositório
 git clone <url-do-repositorio>
-cd esquenta-startup-summit
+cd brunch-vip-startup-summit
 
 # Instale as dependências
 pnpm install
@@ -206,7 +206,7 @@ pnpm start
 
 ## 📄 Licença
 
-Este projeto foi desenvolvido para a Opens como parte do evento Esquenta Startup Summit.
+Este projeto foi desenvolvido para a Opens como parte do evento Brunch VIP Startup Summit.
 
 ---
 

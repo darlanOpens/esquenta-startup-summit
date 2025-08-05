@@ -13,6 +13,6 @@ export default function ConfirmPresencePage() {
 }
 
 export const metadata = {
-  title: 'Confirmar Presença - Esquenta Startup Summit',
-  description: 'Confirme sua presença no Esquenta Startup Summit e preencha suas informações.',
+  title: 'Confirmar Presença - Brunch VIP Startup Summit',
+  description: 'Confirme sua presença no Brunch VIP Startup Summit e preencha suas informações.',
 }

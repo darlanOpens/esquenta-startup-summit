@@ -11,7 +11,7 @@ export function OpensCredit() {
             Organizado com ❤️ por Opens Tecnologia
           </span>
           <Image
-            src="/esquenta/Logo Opens.png"
+            src="/brunch-vip/Logo Opens.png"
             alt="Logo Opens Tecnologia"
             width={32}
             height={32}

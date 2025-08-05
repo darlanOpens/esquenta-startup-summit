@@ -1,4 +1,4 @@
-Instruções‑guia para a IA construir a Landing Page “Esquenta Startup Summit”
+Instruções‑guia para a IA construir a Landing Page “Brunch VIP Startup Summit”
 Objetivo: gerar um repositório Next .js + React completo (pronto para deploy na Vercel) que traduza, sem desvios, o design‑system JSON fornecido e a copy contida no arquivo de conteúdo. A LP deve ser ultramoderna, acessível, performática e fácil de evoluir.
 
 1. Tecnologias & stack obrigatórios

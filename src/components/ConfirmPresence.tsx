@@ -97,8 +97,8 @@ export function ConfirmPresence() {
           className="mb-8"
         >
           <Image
-            src="/esquenta/logo-esquenta.png"
-            alt="Logo Esquenta Startup Summit"
+            src="/brunch-vip/logo-esquenta.png"
+            alt="Logo Brunch VIP Startup Summit"
             width={200}
             height={160}
             className="h-20 w-auto object-contain mx-auto"
@@ -124,7 +124,7 @@ export function ConfirmPresence() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="text-xl md:text-2xl font-semibold mb-6 text-white"
         >
-          Você está entre os convidados exclusivos para o Esquenta Startup Summit
+          Você está entre os convidados exclusivos para o Brunch VIP Startup Summit
         </motion.h2>
 
         {/* Subtítulo */}

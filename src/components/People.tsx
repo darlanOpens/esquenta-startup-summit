@@ -42,7 +42,7 @@ export function People() {
                `}</style>
               <div className="speaker-card relative group overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
                 <Image
-                   src="/esquenta/palestrantes/david_ledson.png"
+                   src="/brunch-vip/palestrantes/david_ledson.png"
                    alt="David Ledson"
                    width={400}
                    height={320}
@@ -58,7 +58,7 @@ export function People() {
               
               <div className="speaker-card relative group overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
                  <Image
-                   src="/esquenta/palestrantes/bento_meirelles.png"
+                   src="/brunch-vip/palestrantes/bento_meirelles.png"
                    alt="Bento Menezes"
                    width={400}
                    height={320}
@@ -74,7 +74,7 @@ export function People() {
               
               <div className="speaker-card relative group overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
                  <Image
-                   src="/esquenta/palestrantes/marcela_zaidem.png"
+                   src="/brunch-vip/palestrantes/marcela_zaidem.png"
                    alt="Marcela Zaiden"
                    width={400}
                    height={320}
@@ -90,7 +90,7 @@ export function People() {
               
               <div className="speaker-card relative group overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
                  <Image
-                   src="/esquenta/palestrantes/leonardo_superti.png"
+                   src="/brunch-vip/palestrantes/leonardo_superti.png"
                    alt="Leonardo Superti"
                    width={400}
                    height={320}
@@ -106,7 +106,7 @@ export function People() {
               
               <div className="speaker-card relative group overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
                   <Image
-                    src="/esquenta/palestrantes/aline_simoes.png"
+                    src="/brunch-vip/palestrantes/aline_simoes.png"
                     alt="Aline Simões"
                     width={400}
                     height={320}
@@ -122,7 +122,7 @@ export function People() {
               
               <div className="speaker-card relative group overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
                   <Image
-                    src="/esquenta/palestrantes/douglas_conrad.png"
+                    src="/brunch-vip/palestrantes/douglas_conrad.png"
                     alt="Douglas Conrad"
                     width={400}
                     height={320}
@@ -138,7 +138,7 @@ export function People() {
               
               <div className="speaker-card relative group overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
                   <Image
-                    src="/esquenta/palestrantes/joao_paulo.png"
+                    src="/brunch-vip/palestrantes/joao_paulo.png"
                     alt="João Paulo"
                     width={400}
                     height={320}
@@ -154,7 +154,7 @@ export function People() {
               
               <div className="speaker-card relative group overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
                   <Image
-                    src="/esquenta/palestrantes/veridiana_santos.png"
+                    src="/brunch-vip/palestrantes/veridiana_santos.png"
                     alt="Veridiana Santos"
                     width={400}
                     height={320}
@@ -170,7 +170,7 @@ export function People() {
               
               <div className="speaker-card relative group overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
                   <Image
-                    src="/esquenta/palestrantes/dionara_conrad.png"
+                    src="/brunch-vip/palestrantes/dionara_conrad.png"
                     alt="Dionara Conrad"
                     width={400}
                     height={320}

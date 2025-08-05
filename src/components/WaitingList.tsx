@@ -80,8 +80,8 @@ export function WaitingList() {
           className="mb-8"
         >
           <Image
-            src="/esquenta/logo-esquenta.png"
-            alt="Logo Esquenta Startup Summit"
+            src="/brunch-vip/logo-esquenta.png"
+            alt="Logo Brunch VIP Startup Summit"
             width={200}
             height={160}
             className="h-20 w-auto object-contain mx-auto"
@@ -123,7 +123,7 @@ export function WaitingList() {
           className="mb-8"
         >
           <p className="text-white/80 max-w-2xl mx-auto leading-relaxed">
-            Mas não se preocupe! O <span className="font-semibold text-orange-300">Esquenta Startup Summit</span> também é para você e estamos abrindo um novo lote em seguida! Inscreva-se abaixo para entrar na <span className="font-semibold text-purple-300">Lista de Espera</span> e reservar seu ingresso em primeira mão.
+            Mas não se preocupe! O <span className="font-semibold text-orange-300">Brunch VIP Startup Summit</span> também é para você e estamos abrindo um novo lote em seguida! Inscreva-se abaixo para entrar na <span className="font-semibold text-purple-300">Lista de Espera</span> e reservar seu ingresso em primeira mão.
           </p>
         </motion.div>
 

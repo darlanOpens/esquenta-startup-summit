@@ -9,7 +9,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Esquenta Startup Summit - Opens | Conecte-se com o futuro dos negócios",
+  title: "Brunch VIP Startup Summit - Opens | Conecte-se com o futuro dos negócios",
   description: "Participe do evento que vai transformar sua visão sobre startups e inovação. Networking, insights e oportunidades únicas. Inscreva-se gratuitamente!",
   keywords: [
     "startup",
@@ -30,15 +30,15 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL("https://esquenta-startup-summit.vercel.app"),
+  metadataBase: new URL("https://brunch-vip-startup-summit.vercel.app"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Esquenta Startup Summit - Opens",
+    title: "Brunch VIP Startup Summit - Opens",
     description: "Participe do evento que vai transformar sua visão sobre startups e inovação. Networking, insights e oportunidades únicas.",
-    url: "https://esquenta-startup-summit.vercel.app",
-    siteName: "Esquenta Startup Summit",
+    url: "https://brunch-vip-startup-summit.vercel.app",
+    siteName: "Brunch VIP Startup Summit",
     locale: "pt_BR",
     type: "website",
     images: [
@@ -46,13 +46,13 @@ export const metadata: Metadata = {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Esquenta Startup Summit - Opens",
+        alt: "Brunch VIP Startup Summit - Opens",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Esquenta Startup Summit - Opens",
+    title: "Brunch VIP Startup Summit - Opens",
     description: "Participe do evento que vai transformar sua visão sobre startups e inovação.",
     images: ["/og-image.jpg"],
   },
