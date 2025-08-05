@@ -59,13 +59,13 @@ export function People() {
               <div className="speaker-card relative group overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
                  <Image
                    src="/brunch-vip/palestrantes/bento_meirelles.png"
-                   alt="Bento Menezes"
+                   alt="Bento Meirelles"
                    width={400}
                    height={320}
                    className="speaker-image w-full"
                  />
                 <div className="absolute bottom-0 left-0 right-0 p-4 bg-white/20 backdrop-blur-md border-t border-white/30">
-                  <h3 className="text-lg font-bold text-white mb-1 drop-shadow-lg">Bento Menezes</h3>
+                  <h3 className="text-lg font-bold text-white mb-1 drop-shadow-lg">Bento Meirelles</h3>
                   <p className="text-orange-200 font-semibold text-xs mb-1">Founder da Minimal</p>
                   <p className="text-white/90 italic text-xs mb-2 drop-shadow">A marca que transformou uma camiseta preta em símbolo de autoestima.</p>
 
@@ -75,13 +75,13 @@ export function People() {
               <div className="speaker-card relative group overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
                  <Image
                    src="/brunch-vip/palestrantes/marcela_zaidem.png"
-                   alt="Marcela Zaiden"
+                   alt="Marcela Zaidem"
                    width={400}
                    height={320}
                    className="speaker-image w-full"
                  />
                 <div className="absolute bottom-0 left-0 right-0 p-4 bg-white/20 backdrop-blur-md border-t border-white/30">
-                  <h3 className="text-lg font-bold text-white mb-1 drop-shadow-lg">Marcela Zaiden</h3>
+                  <h3 className="text-lg font-bold text-white mb-1 drop-shadow-lg">Marcela Zaidem</h3>
                   <p className="text-orange-200 font-semibold text-xs mb-1">Fundadora CNP | Ex-G4 Educação</p>
                   <p className="text-white/90 italic text-xs mb-2 drop-shadow">Especialista em criar culturas vivas com propósito.</p>
 
