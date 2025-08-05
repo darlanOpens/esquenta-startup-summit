@@ -41,20 +41,13 @@ export const metadata: Metadata = {
     siteName: "Brunch VIP Startup Summit",
     locale: "pt_BR",
     type: "website",
-    images: [
-      {
-        url: "/brunch-vip/bg hero2.png",
-        width: 1200,
-        height: 630,
-        alt: "Brunch VIP Startup Summit - Opens",
-      },
-    ],
+
   },
   twitter: {
     card: "summary_large_image",
     title: "Brunch VIP Startup Summit - Opens",
     description: "Participe do evento que vai transformar sua visão sobre startups e inovação.",
-    images: ["/og-image.jpg"],
+
   },
   robots: {
     index: true,
