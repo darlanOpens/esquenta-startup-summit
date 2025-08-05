@@ -89,22 +89,8 @@ export function ConfirmPresence() {
       
       {/* Conteúdo principal */}
       <div className="relative z-10 max-w-2xl mx-auto text-center">
-        {/* Logo */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="mb-8"
-        >
-          <Image
-            src="/brunch-vip/logo-esquenta.png"
-            alt="Logo Brunch VIP Startup Summit"
-            width={200}
-            height={160}
-            className="h-20 w-auto object-contain mx-auto"
-            priority
-          />
-        </motion.div>
+
+
 
         {/* Título principal */}
         <motion.h1

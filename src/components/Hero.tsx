@@ -135,22 +135,8 @@ export function Hero() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
           {/* Coluna esquerda - Conteúdo */}
           <div className="text-center lg:text-left flex flex-col items-center lg:items-start pt-4 lg:pt-0">
-            {/* Logo pequeno no topo */}
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="mb-4"
-            >
-              <Image
-                src="/brunch-vip/logo-esquenta.png"
-                alt="Logo Brunch VIP Startup Summit"
-                width={200}
-                height={160}
-                className="h-16 w-auto object-contain"
-                priority
-              />
-            </motion.div>
+
+
 
             {/* Cápsulas superiores */}
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-2 sm:gap-3 mb-3 sm:mb-6">
